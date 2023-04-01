@@ -2,7 +2,7 @@
 ## About
 PyTorch implementation of IHGNN.
 ## Installation
-This implementation is based on structure2vec graph backend. Under the "lib/" directory, type
+This implementation is based on the structure2vec graph backend. Under the "lib/" directory, type
 ```
 make -j4
 ```
