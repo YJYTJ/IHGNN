@@ -21,7 +21,7 @@ cmd_opt.add_argument('-latent_dim', type=int, default=32, help='dimension(s) of 
 cmd_opt.add_argument('-sortpooling_k', type=float, default=1, help='number of nodes kept after SortPooling')
 cmd_opt.add_argument('-conv1d_activation', type=str, default='ReLU', help='which nn activation layer to use')
 cmd_opt.add_argument('-final_hidden', type=int, default=128, help='dimension of final mlp hidden layer')
-cmd_opt.add_argument('-dropout', type=bool, default=False, help='whether add dropout after dense layer')
+cmd_opt.add_argument('-dropout', type=bool, default=True, help='whether add dropout after dense layer')
 cmd_args, _ = cmd_opt.parse_known_args()
 
 
@@ -45,7 +45,7 @@ class GNNGraph(object):
 
         if len(g.edges()) != 0:
             x, y = zip(*g.edges())
-            self.num_edges = len(x)        
+            self.num_edges = len(x)
             self.edge_pairs = np.ndarray(shape=(self.num_edges, 2), dtype=np.int32)
             self.edge_pairs[:, 0] = x
             self.edge_pairs[:, 1] = y
@@ -53,13 +53,13 @@ class GNNGraph(object):
         else:
             self.num_edges = 0
             self.edge_pairs = np.array([])
-        
+
         # see if there are edge features
         self.edge_features = None
-        if nx.get_edge_attributes(g, 'features'):  
+        if nx.get_edge_attributes(g, 'features'):
             # make sure edges have an attribute 'features' (1 * feature_dim numpy array)
             edge_features = nx.get_edge_attributes(g, 'features')
-            assert(type(edge_features.values()[0]) == np.ndarray) 
+            assert(type(edge_features.values()[0]) == np.ndarray)
             # need to rearrange edge_features using the e2n edge order
             edge_features = {(min(x, y), max(x, y)): z for (x, y), z in edge_features.items()}
             keys = sorted(edge_features)
@@ -121,7 +121,7 @@ def load_data(degree_as_tag, fold):
             assert len(g) == n
             g_list.append(GNNGraph(g, l, node_tags, node_features))
 
-    #add labels and edge_mat       
+    #add labels and edge_mat
     for g in g_list:
         g.neighbors = [[] for i in range(len(g.g))]
         for i, j in g.g.edges():
