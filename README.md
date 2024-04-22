@@ -10,7 +10,7 @@ to compile the necessary c++ files.
 
 After that, under the root directory of this repository, type
 ```
-python main.py -data DATASETNAME
+python main.py -data DATASETNAME -degree_as_tag 0
 ```
 for datasets that have node labels.
 
