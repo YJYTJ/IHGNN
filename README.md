@@ -25,4 +25,8 @@ To see the results, type
 ./compute_acc.sh
 ```
 ## Datasets
+All the datasets are downloaded from
+```
+https://ls11-www.cs.tu-dortmund.de/staff/morris/graphkerneldatasets
+```
 Default graph datasets are stored in "data/DATASETNAME/DATASETNAME.txt". Check the "data/README.md" for the format.
