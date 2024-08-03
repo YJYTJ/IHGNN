@@ -1,6 +1,6 @@
 # IHGNN
 ## About
-PyTorch implementation of IHGNN.
+This repository is the official PyTorch implementation of "Incorporating Heterophily into Graph Neural Networks for Graph Classification", Jiayi Yang, Sourav Medya, and Wei Ye*, IEEE SMC 2024.
 ## Installation
 This implementation is based on the structure2vec graph backend. Under the "lib/" directory, type
 ```
